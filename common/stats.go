@@ -47,6 +47,6 @@ func StartMonitoringGoroutine(in <-chan uint64) {
 
 func PrintRecords() {
 	for _, r := range Records {
-		fmt.Printf("%d,%d,%f\n", r.Time.UnixNano(), r.MsgThpt, r.BytesThpt*1024*1024)
+		fmt.Printf("%d,%d,%f\n", r.Time.UnixNano(), r.MsgThpt, r.BytesThpt/(1024*1024))
 	}
 }
