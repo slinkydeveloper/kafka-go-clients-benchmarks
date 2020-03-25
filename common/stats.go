@@ -28,10 +28,8 @@ func StartMonitoringGoroutine(in <-chan uint64) {
 				bytesTotal += b
 				msgTotal += 1
 			case newTime := <-ticker:
-				if beginning.IsZero() && msgTotal != 0 {
-					beginning = time.Now()
-				} else if !beginning.IsZero() {
-					duration := time.Now().Sub(beginning)
+				if !beginning.IsZero() {
+					duration := newTime.Sub(beginning)
 					Records = append(
 						Records, Record{
 							Time:      newTime,
@@ -39,6 +37,8 @@ func StartMonitoringGoroutine(in <-chan uint64) {
 							BytesThpt: float64(bytesTotal) / duration.Seconds(),
 						},
 					)
+				} else if msgTotal != 0 {
+					beginning = newTime
 				}
 			}
 		}
