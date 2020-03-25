@@ -14,7 +14,7 @@ type Record struct {
 var Records []Record
 
 func StartMonitoringGoroutine(in <-chan uint64) {
-	ticker := time.Tick(250 * time.Millisecond)
+	ticker := time.Tick(1 * time.Second)
 	var beginning time.Time
 	msgTotal := uint64(0)
 	bytesTotal := uint64(0)
