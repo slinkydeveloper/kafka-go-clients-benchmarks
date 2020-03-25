@@ -33,7 +33,7 @@ func StartMonitoringGoroutine(in <-chan uint64) {
 					Records = append(
 						Records, Record{
 							Time:      newTime,
-							MsgThpt:   msgTotal / uint64(duration.Seconds()),
+							MsgThpt:   uint64(float64(msgTotal) / duration.Seconds()),
 							BytesThpt: float64(bytesTotal) / duration.Seconds(),
 						},
 					)
